@@ -1,0 +1,13 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata: { name: package-app }
+spec:
+  workspaces: [{ name: source }]
+  results: [{ name: artifact, description: path to package }]
+  steps:
+    - name: tar
+      image: alpine:3.20
+      workingDir: /workspace/source
+      script: |
+        tar -czf build.tar.gz app
+        echo -n "build.tar.gz" > $(results.artifact.path)

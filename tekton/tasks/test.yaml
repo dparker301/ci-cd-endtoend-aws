@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata: { name: test-python }
+spec:
+  workspaces: [{ name: source }]
+  steps:
+    - name: run-tests
+      image: python:3.11
+      workingDir: /workspace/source
+      script: |
+        pip install -r app/requirements.txt
+        pytest -q

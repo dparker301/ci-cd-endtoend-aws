@@ -1,0 +1,22 @@
+# Terraform
+**/.terraform/
+.terraform/
+terraform.tfstate
+terraform.tfstate.*
+crash.log
+*.tfvars
+*.tfvars.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Build artifacts
+*.zip
+*.tar.gz
+build/
+
+# OS/editor
+.DS_Store
+*.swp

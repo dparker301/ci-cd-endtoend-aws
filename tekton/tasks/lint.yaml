@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata: { name: lint-python }
+spec:
+  workspaces: [{ name: source }]
+  steps:
+    - name: install-deps
+      image: python:3.11
+      workingDir: /workspace/source
+      script: |
+        python -m pip install --upgrade pip
+        pip install -r app/requirements.txt
+    - name: lint
+      image: python:3.11
+      workingDir: /workspace/source
+      script: |
+        flake8 app

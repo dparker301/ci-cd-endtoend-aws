@@ -1,0 +1,46 @@
+---
+- name: Deploy Flask app locally with systemd (no Docker required)
+  hosts: web
+  become: true
+  vars:
+    app_dir: /opt/ci-cd-demo
+    venv_dir: /opt/ci-cd-demo/.venv
+    service_name: ci-cd-demo
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+    - name: Install Python tools
+      apt:
+        name:
+          - python3-venv
+          - python3-pip
+        state: present
+    - name: Ensure app directory
+      file:
+        path: "{{ app_dir }}"
+        state: directory
+        mode: "0755"
+    - name: Copy app source
+      synchronize:
+        src: "{{ playbook_dir }}/../../app/"
+        dest: "{{ app_dir }}/app"
+        recursive: yes
+      delegate_to: localhost
+    - name: Create venv
+      command: "python3 -m venv {{ venv_dir }}"
+      args:
+        creates: "{{ venv_dir }}/bin/activate"
+    - name: Install requirements
+      command: "{{ venv_dir }}/bin/pip install -r {{ app_dir }}/app/requirements.txt"
+    - name: Create systemd service
+      template:
+        src: "../templates/app.service.j2"
+        dest: "/etc/systemd/system/{{ service_name }}.service"
+    - name: Reload systemd
+      command: systemctl daemon-reload
+    - name: Enable and start service
+      systemd:
+        name: "{{ service_name }}"
+        state: restarted
+        enabled: yes

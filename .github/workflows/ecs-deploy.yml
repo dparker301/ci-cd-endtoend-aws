@@ -1,0 +1,118 @@
+name: CI → ECR → ECS
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  id-token: write   # for OpenID Connect
+  contents: read
+
+env:
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: ci-cd-demo
+  CONTAINER_NAME: app
+  CLUSTER_NAME: ci-cd-demo-cluster
+  SERVICE_NAME: ci-cd-demo-svc
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Auth to AWS via OIDC (recommended)
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: ${{ secrets.AWS_GHA_ROLE_ARN }}   # set this secret to the Role ARN you create below
+          role-session-name: gha-ecs-deploy
+
+      - name: Login to Amazon ECR
+        id: ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build & push image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ steps.ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
+            ${{ steps.ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
+          # optional cache for faster builds:
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Get current task definition ARN
+        id: current
+        run: |
+          TD_ARN=$(aws ecs describe-services \
+            --cluster "${CLUSTER_NAME}" \
+            --services "${SERVICE_NAME}" \
+            --query 'services[0].taskDefinition' --output text)
+          echo "TD_ARN=$TD_ARN" >> $GITHUB_OUTPUT
+
+      - name: Download current task definition JSON
+        run: |
+          aws ecs describe-task-definition \
+            --task-definition "${{ steps.current.outputs.TD_ARN }}" \
+            --query 'taskDefinition' \
+            > td.json
+          cat td.json | head -n 40
+
+      - name: Render new task definition (swap image)
+        run: |
+          IMAGE="${{ steps.ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest"
+          python - <<'PY'
+import json, os, sys
+td=json.load(open('td.json'))
+cd=td['containerDefinitions']
+cd[0]['image']=os.environ['IMAGE']
+# prune read-only fields
+for k in ['taskDefinitionArn','revision','status','registeredBy','registeredAt','requiresAttributes','compatibilities']:
+    td.pop(k, None)
+open('reg.json','w').write(json.dumps({
+  "family": td['family'],
+  "taskRoleArn": td.get('taskRoleArn'),
+  "executionRoleArn": td.get('executionRoleArn'),
+  "networkMode": td['networkMode'],
+  "containerDefinitions": cd,
+  "requiresCompatibilities": td['requiresCompatibilities'],
+  "cpu": td.get('cpu'),
+  "memory": td.get('memory')
+}))
+PY
+          cat reg.json
+
+      - name: Register new task definition
+        id: register
+        run: |
+          NEW_TD=$(aws ecs register-task-definition \
+            --cli-input-json file://reg.json \
+            --query 'taskDefinition.taskDefinitionArn' --output text)
+          echo "NEW_TD=$NEW_TD" >> $GITHUB_OUTPUT
+          echo "New TaskDef: $NEW_TD"
+
+      - name: Update ECS service
+        run: |
+          aws ecs update-service \
+            --cluster "${CLUSTER_NAME}" \
+            --service "${SERVICE_NAME}" \
+            --task-definition "${{ steps.register.outputs.NEW_TD }}"
+          echo "Update initiated."
+
+      - name: Wait for service stability
+        run: |
+          aws ecs wait services-stable --cluster "${CLUSTER_NAME}" --services "${SERVICE_NAME}"
+          aws ecs describe-services --cluster "${CLUSTER_NAME}" --services "${SERVICE_NAME}" \
+            --query 'services[0].[taskDefinition, deployments[0].status, runningCount]' --output table
+
+      - name: Show ALB endpoint (FYI)
+        run: |
+          echo "If this repo also stores TF outputs elsewhere, surface ALB here."
+          echo "Otherwise visit the ALB you already have from Terraform output."

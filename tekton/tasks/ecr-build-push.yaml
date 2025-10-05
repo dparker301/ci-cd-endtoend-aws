@@ -1,0 +1,20 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata: { name: build-and-push-ecr }
+spec:
+  workspaces: [{ name: source }]
+  params:
+    - name: image
+      description: ECR image URL (e.g., 123456789012.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest)
+  steps:
+    - name: kaniko-build
+      image: gcr.io/kaniko-project/executor:latest
+      workingDir: /workspace/source
+      env:
+        - name: AWS_REGION
+          valueFrom: { secretKeyRef: { name: ecr-creds, key: aws_region } }
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom: { secretKeyRef: { name: ecr-creds, key: aws_access_key_id } }
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom: { secretKeyRef: { name: ecr-creds, key: aws_secret_access_key } }
+      args: ["--dockerfile=Dockerfile", "--destination=$(params.image)", "--context=."]

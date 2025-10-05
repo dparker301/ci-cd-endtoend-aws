@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata: { name: python-ci-pipeline }
+spec:
+  workspaces: [{ name: source }]
+  tasks:
+    - name: lint
+      taskRef: { name: lint-python }
+      workspaces: [{ name: source, workspace: source }]
+    - name: test
+      runAfter: [lint]
+      taskRef: { name: test-python }
+      workspaces: [{ name: source, workspace: source }]
+    - name: package
+      runAfter: [test]
+      taskRef: { name: package-app }
+      workspaces: [{ name: source, workspace: source }]

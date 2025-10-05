@@ -1,0 +1,599 @@
+{
+    "service": {
+        "serviceArn": "arn:aws:ecs:us-east-1:992382648376:service/ci-cd-demo-cluster/ci-cd-demo-svc",
+        "serviceName": "ci-cd-demo-svc",
+        "clusterArn": "arn:aws:ecs:us-east-1:992382648376:cluster/ci-cd-demo-cluster",
+        "loadBalancers": [
+            {
+                "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:992382648376:targetgroup/ci-cd-demo-tg/9e0f0b6905337850",
+                "containerName": "app",
+                "containerPort": 5000
+            }
+        ],
+        "serviceRegistries": [],
+        "status": "ACTIVE",
+        "desiredCount": 2,
+        "runningCount": 1,
+        "pendingCount": 0,
+        "launchType": "FARGATE",
+        "platformVersion": "LATEST",
+        "platformFamily": "Linux",
+        "taskDefinition": "arn:aws:ecs:us-east-1:992382648376:task-definition/ci-cd-demo-task:2",
+        "deploymentConfiguration": {
+            "deploymentCircuitBreaker": {
+                "enable": false,
+                "rollback": false
+            },
+            "maximumPercent": 200,
+            "minimumHealthyPercent": 50,
+            "strategy": "ROLLING",
+            "bakeTimeInMinutes": 0
+        },
+        "deployments": [
+            {
+                "id": "ecs-svc/7417441153789688295",
+                "status": "PRIMARY",
+                "taskDefinition": "arn:aws:ecs:us-east-1:992382648376:task-definition/ci-cd-demo-task:2",
+                "desiredCount": 1,
+                "pendingCount": 0,
+                "runningCount": 1,
+                "failedTasks": 6,
+                "createdAt": "2025-10-05T12:46:52.832000+00:00",
+                "updatedAt": "2025-10-05T12:47:59.879000+00:00",
+                "launchType": "FARGATE",
+                "platformVersion": "1.4.0",
+                "platformFamily": "Linux",
+                "networkConfiguration": {
+                    "awsvpcConfiguration": {
+                        "subnets": [
+                            "subnet-0af62fd1e5d800c01",
+                            "subnet-0c64d83db1f363a09",
+                            "subnet-0c386371959f5a248",
+                            "subnet-0c8013d298528171e",
+                            "subnet-023edb599f5a4e36c",
+                            "subnet-06959f479d199c259"
+                        ],
+                        "securityGroups": [
+                            "sg-01542fcd548af4222"
+                        ],
+                        "assignPublicIp": "ENABLED"
+                    }
+                },
+                "rolloutState": "IN_PROGRESS",
+                "rolloutStateReason": "ECS deployment ecs-svc/7417441153789688295 in progress."
+            }
+        ],
+        "roleArn": "arn:aws:iam::992382648376:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+        "events": [
+            {
+                "id": "e57b8ac0-39b7-49a9-bbbf-08a78f6293c3",
+                "createdAt": "2025-10-05T13:24:17.856000+00:00",
+                "message": "(service ci-cd-demo-svc, taskSet ecs-svc/7417441153789688295) has begun draining connections on 1 tasks."
+            },
+            {
+                "id": "edc62d88-5540-4174-a7cd-2ae0895e582d",
+                "createdAt": "2025-10-05T13:24:17.850000+00:00",
+                "message": "(service ci-cd-demo-svc) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:992382648376:targetgroup/ci-cd-demo-tg/9e0f0b6905337850)"
+            },
+            {
+                "id": "f4f2a4c2-fa8d-45eb-8861-1bdae48eba46",
+                "createdAt": "2025-10-05T13:24:06.619000+00:00",
+                "message": "(service ci-cd-demo-svc) has stopped 1 running tasks: (task ed39ab689d3b4e85a4f7362d8b2953e6)."
+            },
+            {
+                "id": "5d7bb46b-d486-407c-b93b-c11190d472b1",
+                "createdAt": "2025-10-05T13:24:06.618000+00:00",
+                "message": "(service ci-cd-demo-svc) (task ed39ab689d3b4e85a4f7362d8b2953e6) failed container health checks."
+            },
+            {
+                "id": "f7b135ca-535b-4a45-9adb-ea07236c3d1b",
+                "createdAt": "2025-10-05T13:23:26.082000+00:00",
+                "message": "(service ci-cd-demo-svc) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:992382648376:targetgroup/ci-cd-demo-tg/9e0f0b6905337850)"
+            },
+            {
+                "id": "0f1fb384-c8ca-4170-93da-ac7c978873d1",
+                "createdAt": "2025-10-05T13:22:56.384000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task d6de5c3861e042a3b635c1435467d488). Amazon ECS replaced 1 tasks due to an unhealthy status."
+            },
+            {
+                "id": "1894c1f9-7654-4bdf-85a8-b30dcd99bc7f",
+                "createdAt": "2025-10-05T13:17:05.776000+00:00",
+                "message": "(service ci-cd-demo-svc, taskSet ecs-svc/7417441153789688295) has begun draining connections on 1 tasks."
+            },
+            {
+                "id": "4e85c230-a932-4391-8563-4cefc138d646",
+                "createdAt": "2025-10-05T13:17:05.771000+00:00",
+                "message": "(service ci-cd-demo-svc) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:992382648376:targetgroup/ci-cd-demo-tg/9e0f0b6905337850)"
+            },
+            {
+                "id": "15bc5dca-dff6-48ec-9631-558113c13f91",
+                "createdAt": "2025-10-05T13:16:55.188000+00:00",
+                "message": "(service ci-cd-demo-svc) has stopped 1 running tasks: (task 4d2bc36cd8db499eb9335dcc23c306c5)."
+            },
+            {
+                "id": "1a9a959c-6008-4c7d-839e-6b879cc76969",
+                "createdAt": "2025-10-05T13:16:55.187000+00:00",
+                "message": "(service ci-cd-demo-svc) (task 4d2bc36cd8db499eb9335dcc23c306c5) failed container health checks."
+            },
+            {
+                "id": "106eda47-f2cd-4a02-afd3-94688b9bdf65",
+                "createdAt": "2025-10-05T13:16:04.514000+00:00",
+                "message": "(service ci-cd-demo-svc) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:992382648376:targetgroup/ci-cd-demo-tg/9e0f0b6905337850)"
+            },
+            {
+                "id": "fb940548-2a02-434a-9d87-6c43b831b856",
+                "createdAt": "2025-10-05T13:15:44.313000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task ed39ab689d3b4e85a4f7362d8b2953e6). Amazon ECS replaced 1 tasks due to an unhealthy status."
+            },
+            {
+                "id": "e7399b12-dc53-462e-872e-3432af5ae6ba",
+                "createdAt": "2025-10-05T13:09:53.717000+00:00",
+                "message": "(service ci-cd-demo-svc, taskSet ecs-svc/7417441153789688295) has begun draining connections on 1 tasks."
+            },
+            {
+                "id": "bf968937-6d0c-40f7-9385-0ed9258bdc93",
+                "createdAt": "2025-10-05T13:09:53.712000+00:00",
+                "message": "(service ci-cd-demo-svc) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:992382648376:targetgroup/ci-cd-demo-tg/9e0f0b6905337850)"
+            },
+            {
+                "id": "d347c177-c475-4014-9df6-8b51f7b6ec7b",
+                "createdAt": "2025-10-05T13:09:42.619000+00:00",
+                "message": "(service ci-cd-demo-svc) has stopped 1 running tasks: (task eec4847449f84433aa3433676f59e7c1)."
+            },
+            {
+                "id": "a2bc3b29-51d6-4ac4-9bbc-e11833f502ba",
+                "createdAt": "2025-10-05T13:09:42.618000+00:00",
+                "message": "(service ci-cd-demo-svc) (task eec4847449f84433aa3433676f59e7c1) failed container health checks."
+            },
+            {
+                "id": "c21850a2-89fc-4d6a-9f54-bdd05d426db6",
+                "createdAt": "2025-10-05T13:09:02.427000+00:00",
+                "message": "(service ci-cd-demo-svc) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:992382648376:targetgroup/ci-cd-demo-tg/9e0f0b6905337850)"
+            },
+            {
+                "id": "c342a563-5833-4d0c-9909-52e18c441543",
+                "createdAt": "2025-10-05T13:08:32.369000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task 4d2bc36cd8db499eb9335dcc23c306c5). Amazon ECS replaced 1 tasks due to an unhealthy status."
+            },
+            {
+                "id": "74041e99-df45-4eee-86b6-b6d302c5d262",
+                "createdAt": "2025-10-05T13:02:52.385000+00:00",
+                "message": "(service ci-cd-demo-svc, taskSet ecs-svc/7417441153789688295) has begun draining connections on 1 tasks."
+            },
+            {
+                "id": "9a7bc564-ec34-4355-96fe-7a4d98ac6fe3",
+                "createdAt": "2025-10-05T13:02:52.362000+00:00",
+                "message": "(service ci-cd-demo-svc) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:992382648376:targetgroup/ci-cd-demo-tg/9e0f0b6905337850)"
+            },
+            {
+                "id": "2852daa4-179a-4c79-842c-118f1ea5de21",
+                "createdAt": "2025-10-05T13:02:41.189000+00:00",
+                "message": "(service ci-cd-demo-svc) has stopped 1 running tasks: (task 31be9330d9c6486fa000866dc3510c8a)."
+            },
+            {
+                "id": "ba48a514-ffb3-4ad2-80d5-7f21c4d4745f",
+                "createdAt": "2025-10-05T13:02:41.188000+00:00",
+                "message": "(service ci-cd-demo-svc) (task 31be9330d9c6486fa000866dc3510c8a) failed container health checks."
+            },
+            {
+                "id": "3e2a85a7-46fd-4f5e-90f2-068f5cc2e8a5",
+                "createdAt": "2025-10-05T13:01:50.493000+00:00",
+                "message": "(service ci-cd-demo-svc) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:992382648376:targetgroup/ci-cd-demo-tg/9e0f0b6905337850)"
+            },
+            {
+                "id": "5c0b8d33-4f31-44c0-825d-d96ca04f107f",
+                "createdAt": "2025-10-05T13:01:29.607000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task eec4847449f84433aa3433676f59e7c1). Amazon ECS replaced 1 tasks due to an unhealthy status."
+            },
+            {
+                "id": "829fce0e-7924-44b0-beb6-e3f9d10f2997",
+                "createdAt": "2025-10-05T12:55:39.134000+00:00",
+                "message": "(service ci-cd-demo-svc, taskSet ecs-svc/7417441153789688295) has begun draining connections on 1 tasks."
+            },
+            {
+                "id": "d8ec4500-e9c4-4109-a770-2bd13e009dff",
+                "createdAt": "2025-10-05T12:55:39.128000+00:00",
+                "message": "(service ci-cd-demo-svc) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:992382648376:targetgroup/ci-cd-demo-tg/9e0f0b6905337850)"
+            },
+            {
+                "id": "4f97e2ec-98ff-4ad9-be3f-b6dcca610fd5",
+                "createdAt": "2025-10-05T12:55:30.024000+00:00",
+                "message": "(service ci-cd-demo-svc) has stopped 1 running tasks: (task b6cf993c268c4ec899e00a934b71dca6)."
+            },
+            {
+                "id": "7c011d4e-9481-4c57-bad1-f2c8d9d9b2f1",
+                "createdAt": "2025-10-05T12:55:30.023000+00:00",
+                "message": "(service ci-cd-demo-svc) (task b6cf993c268c4ec899e00a934b71dca6) failed container health checks."
+            },
+            {
+                "id": "92718d29-4454-49c4-af1d-9ba0ac5cd8ee",
+                "createdAt": "2025-10-05T12:54:39.042000+00:00",
+                "message": "(service ci-cd-demo-svc) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:992382648376:targetgroup/ci-cd-demo-tg/9e0f0b6905337850)"
+            },
+            {
+                "id": "dee357ac-6f5f-4778-b93f-4919343b9ecf",
+                "createdAt": "2025-10-05T12:54:18.922000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task b6cf993c268c4ec899e00a934b71dca6). Amazon ECS replaced 1 tasks due to an unhealthy status."
+            },
+            {
+                "id": "72f236ec-4a2a-4934-ae68-e291f6f25633",
+                "createdAt": "2025-10-05T12:49:40.024000+00:00",
+                "message": "(service ci-cd-demo-svc) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:992382648376:targetgroup/ci-cd-demo-tg/9e0f0b6905337850)"
+            },
+            {
+                "id": "d615bcf7-da51-4570-bc0c-4cc17677b3fe",
+                "createdAt": "2025-10-05T12:49:19.402000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task 31be9330d9c6486fa000866dc3510c8a)."
+            },
+            {
+                "id": "a582fb71-b90a-4cea-8afe-a4d7b4decb5e",
+                "createdAt": "2025-10-05T12:48:28.355000+00:00",
+                "message": "(service ci-cd-demo-svc, taskSet ecs-svc/7417441153789688295) has begun draining connections on 1 tasks."
+            },
+            {
+                "id": "0c13f7c6-44cf-4240-b012-99fa2be56923",
+                "createdAt": "2025-10-05T12:48:28.351000+00:00",
+                "message": "(service ci-cd-demo-svc) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:992382648376:targetgroup/ci-cd-demo-tg/9e0f0b6905337850)"
+            },
+            {
+                "id": "466fbbcc-1d41-4b16-aba9-0eb52aa9fca9",
+                "createdAt": "2025-10-05T12:48:17.330000+00:00",
+                "message": "(service ci-cd-demo-svc) has stopped 1 running tasks: (task 6e4af073aab4445eac42fbc0d3c07c5d)."
+            },
+            {
+                "id": "80bc96f7-2f45-4717-90aa-2d952537a73b",
+                "createdAt": "2025-10-05T12:48:17.329000+00:00",
+                "message": "(service ci-cd-demo-svc) (task 6e4af073aab4445eac42fbc0d3c07c5d) failed container health checks."
+            },
+            {
+                "id": "d57c365f-fe9b-4a65-8383-1941c5430605",
+                "createdAt": "2025-10-05T12:48:17.219000+00:00",
+                "message": "(service ci-cd-demo-svc, taskSet ecs-svc/5538584916971739157) has begun draining connections on 1 tasks."
+            },
+            {
+                "id": "5d42a231-bb4c-4f64-83ed-8673f96db010",
+                "createdAt": "2025-10-05T12:48:17.214000+00:00",
+                "message": "(service ci-cd-demo-svc) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:992382648376:targetgroup/ci-cd-demo-tg/9e0f0b6905337850)"
+            },
+            {
+                "id": "0b4916ac-cb06-4d73-854b-dc1d2776f511",
+                "createdAt": "2025-10-05T12:48:07.844000+00:00",
+                "message": "(service ci-cd-demo-svc) has stopped 1 running tasks: (task f8a9c75029a041a3b16b7f306b30c21c)."
+            },
+            {
+                "id": "4601602f-1c3e-4d21-b407-19b98cbd13c7",
+                "createdAt": "2025-10-05T12:48:07.843000+00:00",
+                "message": "(service ci-cd-demo-svc) (task f8a9c75029a041a3b16b7f306b30c21c) failed container health checks."
+            },
+            {
+                "id": "eb51b748-ce9c-40d8-a6f3-fc83492bce5c",
+                "createdAt": "2025-10-05T12:47:36.819000+00:00",
+                "message": "(service ci-cd-demo-svc) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:992382648376:targetgroup/ci-cd-demo-tg/9e0f0b6905337850)"
+            },
+            {
+                "id": "85621cd7-8da7-4e53-8372-d7a38ae92bad",
+                "createdAt": "2025-10-05T12:47:06.527000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task 6e4af073aab4445eac42fbc0d3c07c5d)."
+            },
+            {
+                "id": "794967ec-940c-43ef-9bde-131766805fc1",
+                "createdAt": "2025-10-05T12:46:56.203000+00:00",
+                "message": "(service ci-cd-demo-svc) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:992382648376:targetgroup/ci-cd-demo-tg/9e0f0b6905337850)"
+            },
+            {
+                "id": "865e3a2e-4b49-4e2a-a584-3c3735c29a90",
+                "createdAt": "2025-10-05T12:43:37.696000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task f8a9c75029a041a3b16b7f306b30c21c)."
+            },
+            {
+                "id": "86449bd0-7459-49b5-96fb-95edb6337a46",
+                "createdAt": "2025-10-05T12:30:04.569000+00:00",
+                "message": "(service ci-cd-demo-svc) is unable to consistently start tasks successfully. For more information, see the Troubleshooting section of the Amazon ECS Developer Guide."
+            },
+            {
+                "id": "28934857-0274-4499-a0e0-5c32697c545e",
+                "createdAt": "2025-10-05T12:30:04.568000+00:00",
+                "message": "(service ci-cd-demo-svc) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: not found."
+            },
+            {
+                "id": "45e87e40-b296-443e-9c71-7adf42ddc6ff",
+                "createdAt": "2025-10-05T12:16:02.625000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task 18e452a6ed5b4fa0b75794767a2e5421)."
+            },
+            {
+                "id": "277aabce-ae01-40ee-9268-84380c71dc2f",
+                "createdAt": "2025-10-05T12:02:46.614000+00:00",
+                "message": "(service ci-cd-demo-svc) is unable to consistently start tasks successfully. For more information, see the Troubleshooting section of the Amazon ECS Developer Guide."
+            },
+            {
+                "id": "cdd1b802-29dc-4b72-9ebb-3ecedcfdc594",
+                "createdAt": "2025-10-05T12:02:46.613000+00:00",
+                "message": "(service ci-cd-demo-svc) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: not found."
+            },
+            {
+                "id": "6630fc7f-3065-44dd-88f2-4d0bec862e00",
+                "createdAt": "2025-10-05T11:49:14.880000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task 80ce77e2fa424b3aafe5303f006a55c1)."
+            },
+            {
+                "id": "113648fa-09aa-48a3-a984-ee112bc875ae",
+                "createdAt": "2025-10-05T11:35:22.293000+00:00",
+                "message": "(service ci-cd-demo-svc) is unable to consistently start tasks successfully. For more information, see the Troubleshooting section of the Amazon ECS Developer Guide."
+            },
+            {
+                "id": "d0ec24e5-7319-4ecb-b105-11ed006d79c0",
+                "createdAt": "2025-10-05T11:35:22.292000+00:00",
+                "message": "(service ci-cd-demo-svc) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: not found."
+            },
+            {
+                "id": "29badab4-6e2c-48e9-b44e-f2713f0ecbd4",
+                "createdAt": "2025-10-05T11:22:21.316000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task 2a13ea772d034af0a6ea39d8721c0e09)."
+            },
+            {
+                "id": "bc20a46e-b9b8-4501-9d83-c4804e8e28d3",
+                "createdAt": "2025-10-05T11:09:08.233000+00:00",
+                "message": "(service ci-cd-demo-svc) is unable to consistently start tasks successfully. For more information, see the Troubleshooting section of the Amazon ECS Developer Guide."
+            },
+            {
+                "id": "bf865163-c646-4826-8b17-1a7cdc77b54d",
+                "createdAt": "2025-10-05T11:09:08.232000+00:00",
+                "message": "(service ci-cd-demo-svc) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: not found."
+            },
+            {
+                "id": "3a436e7c-689b-4e89-bdf5-f353c8c34787",
+                "createdAt": "2025-10-05T10:56:01.944000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task cf5d804498554dfb8c4810c362115a99)."
+            },
+            {
+                "id": "c3ed2896-6a8b-4acf-a368-d64c81b6d5ed",
+                "createdAt": "2025-10-05T10:43:07.249000+00:00",
+                "message": "(service ci-cd-demo-svc) is unable to consistently start tasks successfully. For more information, see the Troubleshooting section of the Amazon ECS Developer Guide."
+            },
+            {
+                "id": "33b4c019-9c48-4ad7-b854-5751ca3bb0e4",
+                "createdAt": "2025-10-05T10:43:07.248000+00:00",
+                "message": "(service ci-cd-demo-svc) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: not found."
+            },
+            {
+                "id": "f0bc591a-ff7c-4e77-85d2-db33b28a84f6",
+                "createdAt": "2025-10-05T10:30:13.780000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task fd5d76254ce84784bbfe103c54e3b779)."
+            },
+            {
+                "id": "145ba629-e9d8-4cf6-a889-06f10e97461a",
+                "createdAt": "2025-10-05T10:17:18.556000+00:00",
+                "message": "(service ci-cd-demo-svc) is unable to consistently start tasks successfully. For more information, see the Troubleshooting section of the Amazon ECS Developer Guide."
+            },
+            {
+                "id": "693d1483-2039-4710-8788-a8e39fa4de9a",
+                "createdAt": "2025-10-05T10:17:18.555000+00:00",
+                "message": "(service ci-cd-demo-svc) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: not found."
+            },
+            {
+                "id": "2084fb3b-4651-4c68-aa67-167b351e523b",
+                "createdAt": "2025-10-05T10:04:06.351000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task 8d192e5d35cc4a5caa84b769bf99e6b4)."
+            },
+            {
+                "id": "9c73b300-9b27-4fbf-8d4d-bcf264a7ece3",
+                "createdAt": "2025-10-05T09:50:44.590000+00:00",
+                "message": "(service ci-cd-demo-svc) is unable to consistently start tasks successfully. For more information, see the Troubleshooting section of the Amazon ECS Developer Guide."
+            },
+            {
+                "id": "a9b23ad6-170d-4402-8e8a-83ebf79e86a6",
+                "createdAt": "2025-10-05T09:50:44.589000+00:00",
+                "message": "(service ci-cd-demo-svc) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: not found."
+            },
+            {
+                "id": "535c62ea-dba0-49d2-9d46-e5225d81b651",
+                "createdAt": "2025-10-05T09:37:39.396000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task 1784cf71832844219dda12e89645186a)."
+            },
+            {
+                "id": "8869f18a-1a4c-41c2-b6b8-6f137f00b9b5",
+                "createdAt": "2025-10-05T09:24:43.592000+00:00",
+                "message": "(service ci-cd-demo-svc) is unable to consistently start tasks successfully. For more information, see the Troubleshooting section of the Amazon ECS Developer Guide."
+            },
+            {
+                "id": "9d92e9d7-8e07-4b22-8aaf-e34e122e11ef",
+                "createdAt": "2025-10-05T09:24:43.591000+00:00",
+                "message": "(service ci-cd-demo-svc) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: not found."
+            },
+            {
+                "id": "1916b1e7-6164-4b97-80b0-4e27cdf32468",
+                "createdAt": "2025-10-05T09:11:23.935000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task 6a3436e946f3465e9a3ccdb786af8ab7)."
+            },
+            {
+                "id": "6197b05b-a5ff-48bd-a389-e47b82e4a494",
+                "createdAt": "2025-10-05T08:57:59.445000+00:00",
+                "message": "(service ci-cd-demo-svc) is unable to consistently start tasks successfully. For more information, see the Troubleshooting section of the Amazon ECS Developer Guide."
+            },
+            {
+                "id": "02ad6446-8f24-4a76-bf02-0d55a33fc37d",
+                "createdAt": "2025-10-05T08:57:59.444000+00:00",
+                "message": "(service ci-cd-demo-svc) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: not found."
+            },
+            {
+                "id": "dd940dc3-6e04-43ca-9a49-054196877eb3",
+                "createdAt": "2025-10-05T08:44:24.399000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task 1afdfcec1c1442d9b8fc2af5f89e155c)."
+            },
+            {
+                "id": "890f9b46-4571-4a06-941c-77077f08ca67",
+                "createdAt": "2025-10-05T08:31:31.981000+00:00",
+                "message": "(service ci-cd-demo-svc) is unable to consistently start tasks successfully. For more information, see the Troubleshooting section of the Amazon ECS Developer Guide."
+            },
+            {
+                "id": "489c1ae2-d368-4457-9d79-936b9d6826ae",
+                "createdAt": "2025-10-05T08:31:31.980000+00:00",
+                "message": "(service ci-cd-demo-svc) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: not found."
+            },
+            {
+                "id": "4e7177eb-d81d-4187-b85c-9c62c243765c",
+                "createdAt": "2025-10-05T08:17:25.356000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task 506b6d2bf5154ed2926c447d1b9ded18)."
+            },
+            {
+                "id": "af169d24-9ffa-4b3b-8b00-3967f7d588d2",
+                "createdAt": "2025-10-05T08:03:52.134000+00:00",
+                "message": "(service ci-cd-demo-svc) is unable to consistently start tasks successfully. For more information, see the Troubleshooting section of the Amazon ECS Developer Guide."
+            },
+            {
+                "id": "ccbb09d7-c3ba-45ab-b152-1012de097322",
+                "createdAt": "2025-10-05T08:03:52.133000+00:00",
+                "message": "(service ci-cd-demo-svc) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: not found."
+            },
+            {
+                "id": "b3bf1322-9b98-46fb-8859-728d261b6261",
+                "createdAt": "2025-10-05T08:03:23.998000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task f9d907b79bad4be6882b920a484f19df)."
+            },
+            {
+                "id": "9e2aa506-bad7-48b7-a44d-fd2e518c78d4",
+                "createdAt": "2025-10-05T07:49:28.086000+00:00",
+                "message": "(service ci-cd-demo-svc) is unable to consistently start tasks successfully. For more information, see the Troubleshooting section of the Amazon ECS Developer Guide."
+            },
+            {
+                "id": "4a082c05-fd90-48ac-bf57-c345197ff194",
+                "createdAt": "2025-10-05T07:49:28.085000+00:00",
+                "message": "(service ci-cd-demo-svc) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: not found."
+            },
+            {
+                "id": "a764f121-f882-49d0-af8f-272f21efeaea",
+                "createdAt": "2025-10-05T07:49:00.498000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task ed508fd5400e46eca42475ada2e1dfa1)."
+            },
+            {
+                "id": "b28d3bb7-b21f-48dc-90fc-82bdb0bd945f",
+                "createdAt": "2025-10-05T07:36:01.681000+00:00",
+                "message": "(service ci-cd-demo-svc) is unable to consistently start tasks successfully. For more information, see the Troubleshooting section of the Amazon ECS Developer Guide."
+            },
+            {
+                "id": "479bf7e7-6d76-4b6e-b373-050a9d1fd6e1",
+                "createdAt": "2025-10-05T07:36:01.680000+00:00",
+                "message": "(service ci-cd-demo-svc) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: not found."
+            },
+            {
+                "id": "13d685e3-1e7a-4f72-b1c4-25d2fef35f55",
+                "createdAt": "2025-10-05T07:35:32.541000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task 24a22996441049f7a571665ff6f44648)."
+            },
+            {
+                "id": "cf226be6-d712-430f-8269-36241e1cf7ed",
+                "createdAt": "2025-10-05T07:22:17.495000+00:00",
+                "message": "(service ci-cd-demo-svc) is unable to consistently start tasks successfully. For more information, see the Troubleshooting section of the Amazon ECS Developer Guide."
+            },
+            {
+                "id": "3dc33087-317d-4026-a098-3049a78db371",
+                "createdAt": "2025-10-05T07:22:17.494000+00:00",
+                "message": "(service ci-cd-demo-svc) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: not found."
+            },
+            {
+                "id": "2d700a7d-d19d-4464-9933-2aa240b13984",
+                "createdAt": "2025-10-05T07:21:48.658000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task 7e00da5cd3bf456f8ca9c395dfd61a10)."
+            },
+            {
+                "id": "7f7e40d1-d66f-4fb7-a6a0-aa281a81da47",
+                "createdAt": "2025-10-05T07:07:51.494000+00:00",
+                "message": "(service ci-cd-demo-svc) is unable to consistently start tasks successfully. For more information, see the Troubleshooting section of the Amazon ECS Developer Guide."
+            },
+            {
+                "id": "77c60797-7f69-4e52-aecf-0b0527ba786e",
+                "createdAt": "2025-10-05T07:07:51.493000+00:00",
+                "message": "(service ci-cd-demo-svc) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: not found."
+            },
+            {
+                "id": "531682e6-f200-4b08-ba3d-23a9f7a1e696",
+                "createdAt": "2025-10-05T07:07:23.550000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task 5745453a99614b7ca4afaea3adab1a8e)."
+            },
+            {
+                "id": "6a71da33-6b76-450d-9f1b-a6bc9c326a74",
+                "createdAt": "2025-10-05T06:54:02.043000+00:00",
+                "message": "(service ci-cd-demo-svc) is unable to consistently start tasks successfully. For more information, see the Troubleshooting section of the Amazon ECS Developer Guide."
+            },
+            {
+                "id": "ca1f3067-9683-4f55-8eff-22aaecf721d8",
+                "createdAt": "2025-10-05T06:54:02.042000+00:00",
+                "message": "(service ci-cd-demo-svc) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: not found."
+            },
+            {
+                "id": "ec5ef5d1-b535-41f3-9d42-9ce63eaf5910",
+                "createdAt": "2025-10-05T06:53:33.233000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task 1bf8e74f483c4250a20342f0b39f3e36)."
+            },
+            {
+                "id": "a9d3871e-e162-40ed-be63-430eaa022438",
+                "createdAt": "2025-10-05T06:39:51.383000+00:00",
+                "message": "(service ci-cd-demo-svc) is unable to consistently start tasks successfully. For more information, see the Troubleshooting section of the Amazon ECS Developer Guide."
+            },
+            {
+                "id": "0e7e3188-f33f-4e5f-a7ef-9cbd9e0d7014",
+                "createdAt": "2025-10-05T06:39:51.382000+00:00",
+                "message": "(service ci-cd-demo-svc) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: not found."
+            },
+            {
+                "id": "a140203d-9c8a-4406-a02f-3fc41aae354a",
+                "createdAt": "2025-10-05T06:39:22.649000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task cd87abbe09644aedbe7c216b1cace06d)."
+            },
+            {
+                "id": "9540ff35-5b1d-4cd5-b611-1fa86115fb42",
+                "createdAt": "2025-10-05T06:25:14.140000+00:00",
+                "message": "(service ci-cd-demo-svc) is unable to consistently start tasks successfully. For more information, see the Troubleshooting section of the Amazon ECS Developer Guide."
+            },
+            {
+                "id": "7ac0ed1e-5818-41c8-a005-60a431f60e1a",
+                "createdAt": "2025-10-05T06:25:14.139000+00:00",
+                "message": "(service ci-cd-demo-svc) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 2 time(s): failed to resolve ref 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: not found."
+            },
+            {
+                "id": "54d6d554-d699-4c5b-b869-3859fead1c52",
+                "createdAt": "2025-10-05T06:24:14.461000+00:00",
+                "message": "(service ci-cd-demo-svc) has started 1 tasks: (task 6294479638124644bb02007582e62669)."
+            },
+            {
+                "id": "326d2419-ae9f-4953-b7cb-9dcbcc858b2e",
+                "createdAt": "2025-10-05T06:10:27.813000+00:00",
+                "message": "(service ci-cd-demo-svc) is unable to consistently start tasks successfully. For more information, see the Troubleshooting section of the Amazon ECS Developer Guide."
+            },
+            {
+                "id": "49cdc5d0-6ee2-4307-93e9-31d44020d4b0",
+                "createdAt": "2025-10-05T06:10:27.812000+00:00",
+                "message": "(service ci-cd-demo-svc) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: 992382648376.dkr.ecr.us-east-1.amazonaws.com/ci-cd-demo:latest: not found."
+            }
+        ],
+        "createdAt": "2025-10-05T01:42:19.125000+00:00",
+        "placementConstraints": [],
+        "placementStrategy": [],
+        "networkConfiguration": {
+            "awsvpcConfiguration": {
+                "subnets": [
+                    "subnet-0af62fd1e5d800c01",
+                    "subnet-0c64d83db1f363a09",
+                    "subnet-0c386371959f5a248",
+                    "subnet-0c8013d298528171e",
+                    "subnet-023edb599f5a4e36c",
+                    "subnet-06959f479d199c259"
+                ],
+                "securityGroups": [
+                    "sg-01542fcd548af4222"
+                ],
+                "assignPublicIp": "ENABLED"
+            }
+        },
+        "healthCheckGracePeriodSeconds": 0,
+        "schedulingStrategy": "REPLICA",
+        "deploymentController": {
+            "type": "ECS"
+        },
+        "createdBy": "arn:aws:iam::992382648376:user/Kim",
+        "enableECSManagedTags": false,
+        "propagateTags": "NONE",
+        "enableExecuteCommand": false,
+        "availabilityZoneRebalancing": "ENABLED"
+    }
+}
